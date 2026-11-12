@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DAEGEUK RPG - ARCHIVE</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#080808;color:#eee;
+ font-family:Consolas,"Malgun Gothic",sans-serif;
+ min-height:100vh;display:grid;place-items:center;padding:20px;
+}
+.panel{
+ width:min(700px,100%);padding:35px;
+ background:#101010;border:1px solid #54151d;
+ box-shadow:0 0 45px #500b182b;
+}
+h1{letter-spacing:5px;font-size:30px}
+.red{color:#d52b3b}
+.line{height:1px;background:#85202b;margin:25px 0}
+.small{font-size:11px;color:#927c7e;letter-spacing:2px}
+input{
+ width:100%;padding:15px;background:#050505;
+ border:1px solid #63232a;color:white;font-size:16px;
+}
+button{
+ width:100%;padding:15px;margin-top:12px;
+ background:#941b29;color:white;border:1px solid #d13a48;
+ cursor:pointer;letter-spacing:3px;
+}
+button:hover{background:#bd2535}
+#error{display:none;color:#ff5360;font-size:13px}
+#record{display:none}
+.content{
+ white-space:pre-line;line-height:2.1;
+ font-family:"Malgun Gothic",sans-serif;
+ font-size:15px;color:#d9d0d0;
+}
+</style>
+</head>
+<body>
+<div class="panel">
+ <div class="small">DAEGEUK RPG / CLASSIFIED ARCHIVE</div>
+ <h1>DAEGEUK <span class="red">RPG</span></h1>
+ <div class="line"></div>
+
+ <section id="login">
+  <div class="red small">RESTRICTED ACCESS</div>
+  <h2>기밀 기록 보관소</h2>
+  <p class="small">접근 암호를 입력하십시오.</p>
+  <form id="form">
+   <input id="password" type="password" placeholder="ACCESS CODE" required>
+   <button type="submit">기록 열람</button>
+  </form>
+  <p id="error">접근 거부 — 암호가 올바르지 않습니다.</p>
+ </section>
+
+ <section id="record">
+  <div class="red small">CLASSIFIED DOCUMENT · ARCHIVE-001</div>
+  <h2>백골의 황야</h2>
+  <div class="small">후생물화 현상에 관한 기록</div>
+  <div class="line"></div>
+  <article class="content">백골의 황야에는 '백골의 황야에서 죽은 자는 반드시 부활한다' 라는 전설이 있다. 실제로 이는 맞는 말이다. 백골의 황야에서 죽어 뼛가루가 된 것들은 언젠간 후생물화 현상으로 인해 한데 뭉쳐 생명을 이루기 때문이다.
+
+바실리스크 또한 이 전설이 이루어진다는 것을 알기에 항상 죽음을 두려워하지 않는다.
+
+하지만, 백골의 황야에서 다시 생겨난 생명은 절대 이전과 같은 것이 아니다. 뭉쳐진 뼛가루가 한없이 이전의 것과 비슷해도 같을 수는 없기에, 본 바실리스크 또한 이후에 비슷하게 강력한 개체가 생겨날 뿐이다.
+
+바실리스크는 이 사실을 평생 알 수 없을 것이다. 그것들은 한없이 교체되기에, 어제 그 사실을 기억했던 자는 내일이면 바닥의 뼛조각으로 남기 때문이다.</article>
+  <div class="line"></div>
+  <div class="red small">END OF RECORD / DAEGEUK RPG</div>
+  <button id="back">로그아웃</button>
+ </section>
+</div>
+<script>
+const CODE="Cdowsdaw";
+const login=document.getElementById("login");
+const record=document.getElementById("record");
+document.getElementById("form").addEventListener("submit",e=>{
+ e.preventDefault();
+ if(document.getElementById("password").value===CODE){
+  login.style.display="none";
+  record.style.display="block";
+  document.getElementById("error").style.display="none";
+ }else{
+  document.getElementById("error").style.display="block";
+ }
+});
+document.getElementById("back").onclick=()=>{
+ record.style.display="none";
+ login.style.display="block";
+ document.getElementById("password").value="";
+};
+</script>
+</body>
+</html>
